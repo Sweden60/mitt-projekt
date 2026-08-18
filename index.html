@@ -17,12 +17,11 @@
 
     <h2>📈 AI Aktieanalys</h2>
 
-
     <div>
 
-        <a href="#hem">Hem</a>
         <a href="#analys">Analys</a>
         <a href="#jamforelse">Jämförelse</a>
+        <a href="#trend">Trend</a>
         <a href="#kontakt">Kontakt</a>
 
     </div>
@@ -33,17 +32,15 @@
 
 
 
-<section class="hero" id="hem">
+<section class="hero">
 
     <h1>
         Analysera aktier smartare 📊
     </h1>
 
-
     <p>
-        AI-baserad aktieanalys med riktig marknadsdata.
+        AI-analys med riktig marknadsdata.
     </p>
-
 
 </section>
 
@@ -54,7 +51,6 @@
 
 
 <section class="analysis" id="analys">
-
 
 <h2>
     Aktieanalys
@@ -67,9 +63,7 @@ placeholder="Exempel: Nvidia">
 
 
 <button onclick="analyseraAktie()">
-
 Analysera
-
 </button>
 
 
@@ -86,11 +80,9 @@ Analysera
 
 <section class="comparison" id="jamforelse">
 
-
 <h2>
     Jämför aktier
 </h2>
-
 
 
 <input
@@ -104,15 +96,11 @@ placeholder="Aktie 2">
 
 
 <button onclick="jamfor()">
-
 Jämför
-
 </button>
 
 
-
 <div id="jamforelseResultat"></div>
-
 
 
 </section>
@@ -123,8 +111,31 @@ Jämför
 
 
 
-<section class="contact" id="kontakt">
+<section id="trend">
 
+<h2>
+    Historisk trend
+</h2>
+
+
+<div id="trendResultat">
+
+<p>
+Trendanalys kommer visas här.
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<section id="kontakt">
 
 <h2>
 Kontakt
@@ -167,6 +178,8 @@ AI Aktieanalys - framtidens analysplattform.
 <script src="analys.js"></script>
 
 <script src="jamforelse.js"></script>
+
+<script src="graf.js"></script>
 
 <script src="script.js"></script>
 

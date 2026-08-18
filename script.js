@@ -19,15 +19,23 @@ async function analyseraAktie() {
 
     if (!aktie) {
 
+
         resultat.innerHTML = `
+
         <div class="project-card">
-        <h3>❌ Ingen aktie hittades</h3>
+
+        <h3>
+        ❌ Ingen aktie hittades
+        </h3>
+
         </div>
+
         `;
 
         return;
 
     }
+
 
 
 
@@ -42,6 +50,7 @@ async function analyseraAktie() {
 
     resultat.innerHTML = `
 
+
     <div class="project-card">
 
 
@@ -50,15 +59,19 @@ async function analyseraAktie() {
     </h3>
 
 
+
     <h2>
-    ⭐ AI-poäng: ${analys.poang}/100
+    ⭐ AI-poäng:
+    ${analys.poang}/100
     </h2>
 
 
+
     <p>
-    💵 Aktiekurs:
+    💵 Kurs:
     ${data.price} ${data.currency}
     </p>
+
 
 
     <p>
@@ -67,13 +80,16 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     🔄 Uppdaterad:
     ${data.updated}
     </p>
 
 
+
     <hr>
+
 
 
     <p>
@@ -82,10 +98,12 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     💎 Kvalitet:
     ${analys.kvalitet}/100
     </p>
+
 
 
     <p>
@@ -94,14 +112,18 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     🤖 ${analys.text}
     </p>
 
 
+
     </div>
 
+
     `;
+
 
 
 }
@@ -117,19 +139,19 @@ async function analyseraAktie() {
 function jamfor() {
 
 
-    let namn1 = document
-        .getElementById("aktie1")
-        .value
-        .trim()
-        .toLowerCase();
+    let namn1 =
+    document.getElementById("aktie1")
+    .value
+    .trim()
+    .toLowerCase();
 
 
 
-    let namn2 = document
-        .getElementById("aktie2")
-        .value
-        .trim()
-        .toLowerCase();
+    let namn2 =
+    document.getElementById("aktie2")
+    .value
+    .trim()
+    .toLowerCase();
 
 
 
@@ -154,7 +176,7 @@ function jamfor() {
         <div class="project-card">
 
         <h3>
-        ❌ Hittade inte båda aktierna
+        ❌ Kunde inte hitta aktierna
         </h3>
 
         </div>
@@ -168,10 +190,10 @@ function jamfor() {
 
 
 
+
     let analys1 = skapaAnalys(aktie1);
 
     let analys2 = skapaAnalys(aktie2);
-
 
 
 
@@ -213,60 +235,97 @@ function jamfor() {
 
 
 
-    <h3>
-    ${aktie1.namn}: ${analys1.poang}/100
-    </h3>
-
-
-    <div style="width:100%;background:#ddd">
-
-        <div style="
-        width:${analys1.poang}%;
-        background:#2563eb;
-        height:20px;">
-        </div>
-
-    </div>
-
-
-
-
-    <h3>
-    ${aktie2.namn}: ${analys2.poang}/100
-    </h3>
-
-
-    <div style="width:100%;background:#ddd">
-
-        <div style="
-        width:${analys2.poang}%;
-        background:#16a34a;
-        height:20px;">
-        </div>
-
-    </div>
-
-
-
-
-
-    <h1>
-    🏆 Vinnare: ${vinnare}
-    </h1>
-
-
+    <p>
+    ${aktie1.namn}:
+    ${analys1.poang}/100
+    </p>
 
 
     <p>
-    🤖 AI-analys:
-    ${vinnare} har högst totalpoäng baserat på
-    tillväxt, kvalitet och risk.
+    ${aktie2.namn}:
+    ${analys2.poang}/100
     </p>
 
 
 
+    <h2>
+    🏆 Vinnare:
+    ${vinnare}
+    </h2>
+
+
+
     </div>
 
+
+    `;
+
+
+
+}
+
+
+
+
+
+
+
+
+function visaTrend() {
+
+
+    let priser = [
+
+        100,
+        110,
+        125,
+        140,
+        160
+
+    ];
+
+
+
+    let trend = skapaTrendData(priser);
+
+
+
+    document.getElementById("trendResultat")
+    .innerHTML = `
+
+
+    <div class="project-card">
+
+
+    <h2>
+    📈 Trend
+    </h2>
+
+
+    <p>
+    Start:
+    ${trend.start}
+    </p>
+
+
+    <p>
+    Slut:
+    ${trend.slut}
+    </p>
+
+
+    <p>
+    Förändring:
+    ${trend.förändring}
+    </p>
+
+
+    <h3>
+    ${trend.trend}
+    </h3>
+
+
+    </div>
 
 
     `;
