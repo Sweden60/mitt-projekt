@@ -4,7 +4,7 @@ html {
 
 
 body {
-    background-color: #f0f4ff;
+    background: #f0f4ff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 30px;
@@ -19,7 +19,7 @@ nav {
     align-items: center;
     background: #2563eb;
     padding: 20px 35px;
-    border-radius: 18px;
+    border-radius: 20px;
 }
 
 
@@ -51,13 +51,10 @@ nav a:hover {
 }
 
 
-
 .hero h1 {
     color: #2563eb;
     font-size: 65px;
-    margin-bottom: 20px;
 }
-
 
 
 .hero p {
@@ -67,23 +64,20 @@ nav a:hover {
 
 
 button {
-    margin-top: 25px;
     background: #2563eb;
     color: white;
     border: none;
     padding: 18px 40px;
-    font-size: 20px;
     border-radius: 12px;
+    font-size: 20px;
     cursor: pointer;
 }
-
 
 
 button:hover {
     background: #1e40af;
     transform: scale(1.05);
 }
-
 
 
 
@@ -96,7 +90,6 @@ button:hover {
     margin: 40px 0;
     border-radius: 20px;
 }
-
 
 
 
@@ -113,7 +106,6 @@ h2 {
     margin-top: 20px;
     border-radius: 15px;
 }
-
 
 
 .project-card:hover {
