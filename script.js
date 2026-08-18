@@ -23,7 +23,6 @@ async function analyseraAktie() {
 
 
 
-
     let valdAktie = stocks[aktie];
 
 
@@ -55,39 +54,11 @@ async function analyseraAktie() {
 
 
 
-
     let marknadsData = await hamtaAktieData(valdAktie.ticker);
 
 
 
-
-    if (!marknadsData) {
-
-
-        resultat.innerHTML = `
-
-        <div class="project-card">
-
-            <h3>
-                ⚠️ Ingen marknadsdata
-            </h3>
-
-            <p>
-                Kunde inte hämta aktuell aktiedata.
-            </p>
-
-        </div>
-
-        `;
-
-
-        return;
-
-
-    }
-
-
-
+    let analysResultat = skapaAnalys(valdAktie);
 
 
 
@@ -104,10 +75,10 @@ async function analyseraAktie() {
 
 
 
-        <p>
-            🔎 Ticker:
-            ${valdAktie.ticker}
-        </p>
+        <h2>
+            ⭐ AI-poäng:
+            ${analysResultat.poang}/100
+        </h2>
 
 
 
@@ -136,25 +107,36 @@ async function analyseraAktie() {
 
 
 
+        <hr>
+
+
+
+
         <p>
-            🏢 Börsvärde:
-            ${valdAktie.borvarde}
+            📈 Tillväxt:
+            ${analysResultat.tillvaxt}/100
+        </p>
+
+
+
+        <p>
+            💎 Kvalitet:
+            ${analysResultat.kvalitet}/100
+        </p>
+
+
+
+        <p>
+            ⚠️ Risk:
+            ${analysResultat.risk}/100
         </p>
 
 
 
 
         <p>
-            📊 P/E-tal:
-            ${valdAktie.pe}
-        </p>
-
-
-
-
-        <p>
-            🤖 AI-analys:
-            Bolaget analyseras baserat på finansiell data, risk och tillväxt.
+            🤖 AI-bedömning:
+            ${analysResultat.text}
         </p>
 
 
