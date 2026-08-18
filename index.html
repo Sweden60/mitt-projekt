@@ -2,8 +2,11 @@
 <html>
 
 <head>
+
     <title>AI Aktieanalys</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -14,64 +17,98 @@
 
     <h2>📈 AI Aktieanalys</h2>
 
+
     <div>
+
         <a href="#hem">Hem</a>
+
         <a href="#analys">Analys</a>
+
         <a href="#verktyg">Verktyg</a>
+
         <a href="#kontakt">Kontakt</a>
+
     </div>
 
 </nav>
 
 
 
+
+
 <section class="hero" id="hem">
+
 
     <h1>
         Analysera aktier smartare 📊
     </h1>
 
+
     <p>
         En plattform för att analysera bolag, jämföra aktier och bygga bättre investeringsbeslut.
     </p>
+
 
     <button>
         Börja analysera
     </button>
 
+
 </section>
+
+
 
 
 
 
 <section class="analysis" id="analys">
 
+
     <h2>
         Aktieanalys
     </h2>
 
 
+
     <div class="analysis-card">
+
 
         <h3>
             Sök aktie
         </h3>
 
+
+
         <p>
             Skriv in ett bolag för att få en analys.
         </p>
 
-        <input placeholder="Exempel: Apple">
 
 
-        <button>
+        <input 
+        id="aktieInput" 
+        placeholder="Exempel: Apple">
+
+
+
+        <button onclick="analyseraAktie()">
+
             Analysera
+
         </button>
+
+
+
+        <div id="resultat"></div>
+
+
 
     </div>
 
 
 </section>
+
+
 
 
 
@@ -85,31 +122,40 @@
     </h2>
 
 
+
     <div class="project-card">
+
 
         <h3>
             📊 Aktie jämförelse
         </h3>
 
+
         <p>
             Jämför två bolag mot varandra.
         </p>
 
+
     </div>
+
 
 
 
     <div class="project-card">
 
+
         <h3>
             💰 Utdelningskalkylator
         </h3>
+
 
         <p>
             Räkna på framtida utdelningar.
         </p>
 
+
     </div>
+
 
 
 </section>
@@ -118,7 +164,10 @@
 
 
 
+
+
 <section class="contact" id="kontakt">
+
 
     <h2>
         Kontakt
@@ -135,14 +184,22 @@
 
 
 
+
 <footer>
+
 
     <p>
         © 2026 AI Aktieanalys
     </p>
 
+
 </footer>
 
+
+
+
+
+<script src="script.js"></script>
 
 
 </body>
