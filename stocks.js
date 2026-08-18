@@ -1,34 +1,51 @@
 const stocks = {
 
 
-    apple: {
-
-        namn: "Apple",
-
-        ticker: "AAPL",
-
-        kurs: 225,
-
-        borvarde: "3.4 biljoner USD",
-
-        pe: 34
-
-    },
-
-
     nvidia: {
 
         namn: "Nvidia",
 
         ticker: "NVDA",
 
-        kurs: 180,
+        tillvaxt: "Mycket hög",
 
-        borvarde: "4.4 biljoner USD",
+        lonsamhet: "Extremt hög",
 
-        pe: 55
+        risk: "Medel",
+
+        aiStyrka: 100,
+
+        konkurrens: 95,
+
+        vardering: "Hög"
 
     },
+
+
+
+
+    apple: {
+
+        namn: "Apple",
+
+        ticker: "AAPL",
+
+        tillvaxt: "Hög",
+
+        lonsamhet: "Mycket hög",
+
+        risk: "Låg",
+
+        aiStyrka: 70,
+
+        konkurrens: 90,
+
+        vardering: "Medel"
+
+    },
+
+
+
 
 
     tesla: {
@@ -37,13 +54,20 @@ const stocks = {
 
         ticker: "TSLA",
 
-        kurs: 350,
+        tillvaxt: "Hög",
 
-        borvarde: "1 biljon USD",
+        lonsamhet: "Hög",
 
-        pe: 180
+        risk: "Hög",
+
+        aiStyrka: 80,
+
+        konkurrens: 85,
+
+        vardering: "Hög"
 
     }
+
 
 
 };

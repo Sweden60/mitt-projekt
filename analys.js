@@ -18,16 +18,11 @@ function skapaAnalys(aktie) {
         tillvaxt += 25;
 
     }
-    else {
-
-        tillvaxt += 10;
-
-    }
 
 
 
 
-    // Kvalitet
+    // Lönsamhet
     if (aktie.lonsamhet === "Extremt hög") {
 
         kvalitet += 35;
@@ -40,9 +35,20 @@ function skapaAnalys(aktie) {
     }
     else {
 
-        kvalitet += 10;
+        kvalitet += 15;
 
     }
+
+
+
+
+    // AI-styrka
+    kvalitet += aktie.aiStyrka * 0.15;
+
+
+
+    // Konkurrensfördel
+    kvalitet += aktie.konkurrens * 0.15;
 
 
 
@@ -50,7 +56,7 @@ function skapaAnalys(aktie) {
     // Risk
     if (aktie.risk === "Låg") {
 
-        risk += 25;
+        risk += 30;
 
     }
     else if (aktie.risk === "Medel") {
@@ -60,6 +66,17 @@ function skapaAnalys(aktie) {
     }
     else {
 
+        risk -= 15;
+
+    }
+
+
+
+
+
+    // Värdering
+    if (aktie.vardering === "Hög") {
+
         risk -= 10;
 
     }
@@ -68,12 +85,12 @@ function skapaAnalys(aktie) {
 
 
 
-    // Begränsa värden
-    tillvaxt = Math.min(tillvaxt, 100);
+    // Begränsa
+    tillvaxt = Math.min(Math.round(tillvaxt), 100);
 
-    kvalitet = Math.min(kvalitet, 100);
+    kvalitet = Math.min(Math.round(kvalitet), 100);
 
-    risk = Math.max(Math.min(risk, 100), 0);
+    risk = Math.max(Math.min(Math.round(risk), 100), 0);
 
 
 
@@ -81,9 +98,9 @@ function skapaAnalys(aktie) {
 
     let total = Math.round(
 
-        (tillvaxt * 0.4) +
-        (kvalitet * 0.35) +
-        (risk * 0.25)
+        (tillvaxt * 0.35) +
+        (kvalitet * 0.45) +
+        (risk * 0.20)
 
     );
 
@@ -99,27 +116,26 @@ function skapaAnalys(aktie) {
 
 
         text =
-        "Starkt bolag med hög kvalitet, bra tillväxt och attraktiv riskprofil.";
+        "Mycket starkt bolag med hög kvalitet, tillväxt och konkurrensfördel.";
 
 
-    }
+    } 
     else if (total >= 70) {
 
 
         text =
-        "Bra bolag med tydliga styrkor men vissa risker finns.";
+        "Starkt bolag men vissa risker eller värderingsfrågor finns.";
 
 
-    }
+    } 
     else {
 
 
         text =
-        "Blandad bild med både möjligheter och risker.";
+        "Blandad bild. Bolaget har möjligheter men även tydliga risker.";
 
 
     }
-
 
 
 
