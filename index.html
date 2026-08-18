@@ -22,7 +22,7 @@
 
         <a href="#hem">Hem</a>
         <a href="#analys">Analys</a>
-        <a href="#verktyg">Verktyg</a>
+        <a href="#jamforelse">Jämförelse</a>
         <a href="#kontakt">Kontakt</a>
 
     </div>
@@ -35,22 +35,14 @@
 
 <section class="hero" id="hem">
 
-
     <h1>
         Analysera aktier smartare 📊
     </h1>
 
 
     <p>
-        En AI-plattform för att analysera aktier med riktig data.
+        AI-baserad aktieanalys med riktig marknadsdata.
     </p>
-
-
-    <button onclick="document.getElementById('analys').scrollIntoView()">
-
-        Börja analysera
-
-    </button>
 
 
 </section>
@@ -69,35 +61,19 @@
 </h2>
 
 
-
-<div class="analysis-card">
-
-
-<h3>
-    Sök aktie
-</h3>
-
-
-
 <input 
 id="aktieInput"
 placeholder="Exempel: Nvidia">
 
 
-
 <button onclick="analyseraAktie()">
 
-    Analysera
+Analysera
 
 </button>
 
 
-
 <div id="resultat"></div>
-
-
-
-</div>
 
 
 </section>
@@ -108,41 +84,34 @@ placeholder="Exempel: Nvidia">
 
 
 
-<section class="tools" id="verktyg">
+<section class="comparison" id="jamforelse">
 
 
 <h2>
-    Verktyg
+    Jämför aktier
 </h2>
 
 
 
-<div class="project-card">
-
-<h3>
-📊 Aktie jämförelse
-</h3>
-
-<p>
-Jämför bolag mot varandra.
-</p>
-
-</div>
+<input
+id="aktie1"
+placeholder="Aktie 1">
 
 
+<input
+id="aktie2"
+placeholder="Aktie 2">
 
 
-<div class="project-card">
+<button onclick="jamfor()">
 
-<h3>
-💰 Utdelningskalkylator
-</h3>
+Jämför
 
-<p>
-Beräkna framtida investeringar.
-</p>
+</button>
 
-</div>
+
+
+<div id="jamforelseResultat"></div>
 
 
 
@@ -163,7 +132,7 @@ Kontakt
 
 
 <p>
-AI Aktieanalys - bygger framtidens analysverktyg.
+AI Aktieanalys - framtidens analysplattform.
 </p>
 
 
@@ -188,6 +157,7 @@ AI Aktieanalys - bygger framtidens analysverktyg.
 
 
 
+
 <script src="stocks.js"></script>
 
 <script src="config.js"></script>
@@ -196,7 +166,10 @@ AI Aktieanalys - bygger framtidens analysverktyg.
 
 <script src="analys.js"></script>
 
+<script src="jamforelse.js"></script>
+
 <script src="script.js"></script>
+
 
 
 </body>
