@@ -1,59 +1,64 @@
+console.log("API.JS laddad");
+
+
 async function hamtaAktieData(ticker) {
 
 
     try {
 
 
-        // Här kommer riktig API-koppling senare
-
-        let testData = {
-
-
-            AAPL: {
-
-                price: 225,
-
-                currency: "USD",
-
-                updated: "testdata"
-
-            },
+        const url = 
+        `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
 
 
-            NVDA: {
 
-                price: 180,
-
-                currency: "USD",
-
-                updated: "testdata"
-
-            },
+        const response = await fetch(url);
 
 
-            TSLA: {
+        const data = await response.json();
 
-                price: 350,
 
-                currency: "USD",
 
-                updated: "testdata"
+        console.log("API svar:", data);
 
-            }
+
+
+        const quote = data["Global Quote"];
+
+
+
+        if (!quote || !quote["05. price"]) {
+
+
+            console.log("Ingen kursdata hittades");
+
+            return null;
+
+        }
+
+
+
+        return {
+
+
+            price: Number(quote["05. price"]).toFixed(2),
+
+            currency: "USD",
+
+            change: quote["10. change percent"],
+
+            updated: quote["07. latest trading day"]
 
 
         };
 
 
 
-        return testData[ticker];
-
-
-
     } catch (error) {
 
 
-        console.log("Fel vid hämtning av aktiedata:", error);
+        console.log("API fel:", error);
+
 
         return null;
 
