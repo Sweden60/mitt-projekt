@@ -3,7 +3,6 @@ function analyseraAktie() {
 
     let aktie = document.getElementById("aktieInput").value.toLowerCase();
 
-
     let resultat = document.getElementById("resultat");
 
 
@@ -18,57 +17,75 @@ function analyseraAktie() {
 
 
 
+
     let analys = {
+
 
         apple: {
 
             namn: "Apple",
 
-            poang: 86,
+            total: 86,
 
-            tillvaxt: "Stark",
+            kvalitet: 92,
 
-            kvalitet: "Mycket hög",
+            tillvaxt: 78,
 
-            risk: "Låg"
+            risk: 85,
+
+            sammanfattning:
+            "Starkt kvalitetsbolag med hög lönsamhet och stabil historik."
 
         },
+
 
 
         nvidia: {
 
             namn: "Nvidia",
 
-            poang: 91,
+            total: 91,
 
-            tillvaxt: "Extrem",
+            kvalitet: 95,
 
-            kvalitet: "Mycket hög",
+            tillvaxt: 98,
 
-            risk: "Medel"
+            risk: 70,
+
+            sammanfattning:
+            "Extrem tillväxt och stark position inom AI, men värderingen kräver försiktighet."
 
         },
+
 
 
         tesla: {
 
             namn: "Tesla",
 
-            poang: 74,
+            total: 74,
 
-            tillvaxt: "Hög",
+            kvalitet: 65,
 
-            kvalitet: "Medel",
+            tillvaxt: 90,
 
-            risk: "Hög"
+            risk: 45,
+
+            sammanfattning:
+            "Hög tillväxtpotential men större risk på grund av konkurrens och värdering."
 
         }
+
 
     };
 
 
 
+
+
     let valdAktie = analys[aktie];
+
+
 
 
 
@@ -79,13 +96,16 @@ function analyseraAktie() {
 
             namn: aktie.toUpperCase(),
 
-            poang: 70,
+            total: 50,
 
-            tillvaxt: "Okänd",
+            kvalitet: 50,
 
-            kvalitet: "Ej analyserad",
+            tillvaxt: 50,
 
-            risk: "Okänd"
+            risk: 50,
+
+            sammanfattning:
+            "Ingen detaljerad analys finns ännu för detta bolag."
 
         };
 
@@ -96,7 +116,9 @@ function analyseraAktie() {
 
 
 
+
     resultat.innerHTML = `
+
 
 
     <div class="project-card">
@@ -107,36 +129,46 @@ function analyseraAktie() {
         </h3>
 
 
-        <p>
-            ⭐ Aktiepoäng: ${valdAktie.poang}/100
-        </p>
 
+        <h2>
+            ⭐ ${valdAktie.total}/100
+        </h2>
 
-        <p>
-            📊 Tillväxt: ${valdAktie.tillvaxt}
-        </p>
 
 
         <p>
-            💎 Kvalitet: ${valdAktie.kvalitet}
+            💎 Kvalitet
+            █████████░ ${valdAktie.kvalitet}%
         </p>
+
 
 
         <p>
-            ⚠️ Risk: ${valdAktie.risk}
+            📊 Tillväxt
+            █████████░ ${valdAktie.tillvaxt}%
         </p>
+
 
 
         <p>
-            🤖 AI-bedömning:
-            Analysen bygger på bolagets kvalitet, tillväxt och riskprofil.
+            ⚠️ Risk
+            ███████░░░ ${valdAktie.risk}%
         </p>
+
+
+
+        <p>
+            🤖 AI-analys:
+            ${valdAktie.sammanfattning}
+        </p>
+
 
 
     </div>
 
 
     `;
+
 
 
 }
