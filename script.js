@@ -1,4 +1,4 @@
-function analyseraAktie() {
+async function analyseraAktie() {
 
 
     let aktie = document
@@ -22,25 +22,22 @@ function analyseraAktie() {
 
 
 
-
     let valdAktie = stocks[aktie];
 
 
 
-
     if (!valdAktie) {
-
 
         resultat.innerHTML = `
 
         <div class="project-card">
 
             <h3>
-                ❌ Ingen data hittades
+                ❌ Ingen aktie hittades
             </h3>
 
             <p>
-                Vi har ännu ingen analys för ${aktie}.
+                Testa till exempel Nvidia, Apple eller Tesla.
             </p>
 
         </div>
@@ -51,6 +48,9 @@ function analyseraAktie() {
 
     }
 
+
+
+    let marknadsData = await hamtaAktieData(valdAktie.ticker);
 
 
 
@@ -66,16 +66,26 @@ function analyseraAktie() {
         </h3>
 
 
+
         <p>
             🔎 Ticker:
             ${valdAktie.ticker}
         </p>
 
 
+
         <p>
             💵 Aktiekurs:
-            ${valdAktie.kurs}
+            ${marknadsData.price} ${marknadsData.currency}
         </p>
+
+
+
+        <p>
+            🔄 Uppdaterad:
+            ${marknadsData.updated}
+        </p>
+
 
 
         <p>
@@ -84,16 +94,19 @@ function analyseraAktie() {
         </p>
 
 
+
         <p>
             📊 P/E-tal:
             ${valdAktie.pe}
         </p>
 
 
+
         <p>
             🤖 AI-analys:
-            Data hämtad från aktiedatabasen.
+            Data hämtad via analysmotorn.
         </p>
+
 
 
     </div>

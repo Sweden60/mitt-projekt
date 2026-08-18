@@ -1,46 +1,64 @@
 async function hamtaAktieData(ticker) {
 
 
-    console.log("Hämtar data för:", ticker);
+    try {
+
+
+        // Här kommer riktig API-koppling senare
+
+        let testData = {
+
+
+            AAPL: {
+
+                price: 225,
+
+                currency: "USD",
+
+                updated: "testdata"
+
+            },
+
+
+            NVDA: {
+
+                price: 180,
+
+                currency: "USD",
+
+                updated: "testdata"
+
+            },
+
+
+            TSLA: {
+
+                price: 350,
+
+                currency: "USD",
+
+                updated: "testdata"
+
+            }
+
+
+        };
 
 
 
-    // Testdata tills vi kopplar riktig API
-
-    let data = {
-
-
-        AAPL: {
-
-            price: 225,
-
-            change: "+1.2%"
-
-        },
-
-
-        NVDA: {
-
-            price: 180,
-
-            change: "+2.5%"
-
-        },
-
-
-        TSLA: {
-
-            price: 350,
-
-            change: "-0.8%"
-
-        }
-
-
-    };
+        return testData[ticker];
 
 
 
-    return data[ticker];
+    } catch (error) {
+
+
+        console.log("Fel vid hämtning av aktiedata:", error);
+
+        return null;
+
+
+    }
+
 
 }
