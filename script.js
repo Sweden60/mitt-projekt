@@ -17,7 +17,6 @@ function analyseraAktie() {
 
 
 
-
     let analys = {
 
 
@@ -25,16 +24,22 @@ function analyseraAktie() {
 
             namn: "Apple",
 
-            total: 86,
+            kurs: "$225",
 
-            kvalitet: 92,
+            marknadsvarde: "3.4 biljoner USD",
+
+            pe: "34",
+
+            total: 86,
 
             tillvaxt: 78,
 
-            risk: 85,
+            lonssamhet: "Mycket hög",
+
+            risk: "Låg",
 
             sammanfattning:
-            "Starkt kvalitetsbolag med hög lönsamhet och stabil historik."
+            "Starkt kvalitetsbolag med stabil vinst och starkt varumärke."
 
         },
 
@@ -44,16 +49,22 @@ function analyseraAktie() {
 
             namn: "Nvidia",
 
-            total: 91,
+            kurs: "$180",
 
-            kvalitet: 95,
+            marknadsvarde: "4.4 biljoner USD",
+
+            pe: "55",
+
+            total: 91,
 
             tillvaxt: 98,
 
-            risk: 70,
+            lonssamhet: "Extremt hög",
+
+            risk: "Medel",
 
             sammanfattning:
-            "Extrem tillväxt inom AI och stark marknadsposition, men värderingen är hög."
+            "Ledande inom AI och datacenter. Hög tillväxt men hög värdering."
 
         },
 
@@ -63,16 +74,22 @@ function analyseraAktie() {
 
             namn: "Tesla",
 
-            total: 74,
+            kurs: "$350",
 
-            kvalitet: 65,
+            marknadsvarde: "1 biljon USD",
+
+            pe: "180",
+
+            total: 74,
 
             tillvaxt: 90,
 
-            risk: 45,
+            lonssamhet: "Medel",
+
+            risk: "Hög",
 
             sammanfattning:
-            "Hög tillväxtpotential men större risk på grund av konkurrens och värdering."
+            "Stor tillväxtpotential men hög värdering och konkurrens."
 
         }
 
@@ -82,9 +99,7 @@ function analyseraAktie() {
 
 
 
-
     let valdAktie = analys[aktie];
-
 
 
 
@@ -96,22 +111,27 @@ function analyseraAktie() {
 
             namn: aktie.toUpperCase(),
 
-            total: 50,
+            kurs: "Ej tillgänglig",
 
-            kvalitet: 50,
+            marknadsvarde: "Ej tillgängligt",
+
+            pe: "Ej tillgängligt",
+
+            total: 50,
 
             tillvaxt: 50,
 
-            risk: 50,
+            lonssamhet: "Okänd",
+
+            risk: "Okänd",
 
             sammanfattning:
-            "Ingen detaljerad analys finns ännu för detta bolag."
+            "Ingen analys finns ännu för detta bolag."
 
         };
 
 
     }
-
 
 
 
@@ -135,20 +155,32 @@ function analyseraAktie() {
 
 
         <p>
-            💎 Kvalitet:
-            ${valdAktie.kvalitet}%
+            💵 Aktiekurs: ${valdAktie.kurs}
         </p>
 
 
         <p>
-            📊 Tillväxt:
-            ${valdAktie.tillvaxt}%
+            🏢 Börsvärde: ${valdAktie.marknadsvarde}
         </p>
 
 
         <p>
-            ⚠️ Risk:
-            ${valdAktie.risk}%
+            📊 P/E-tal: ${valdAktie.pe}
+        </p>
+
+
+        <p>
+            📈 Tillväxt: ${valdAktie.tillvaxt}%
+        </p>
+
+
+        <p>
+            💰 Lönsamhet: ${valdAktie.lonssamhet}
+        </p>
+
+
+        <p>
+            ⚠️ Risk: ${valdAktie.risk}
         </p>
 
 
