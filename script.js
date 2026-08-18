@@ -1,7 +1,7 @@
 async function analyseraAktie() {
 
 
-    let aktie = document
+    let namn = document
         .getElementById("aktieInput")
         .value
         .trim()
@@ -13,21 +13,16 @@ async function analyseraAktie() {
 
 
 
-    let valdAktie = stocks[aktie];
+    let aktie = stocks[namn];
 
 
 
-    if (!valdAktie) {
-
+    if (!aktie) {
 
         resultat.innerHTML = `
-
         <div class="project-card">
-
         <h3>❌ Ingen aktie hittades</h3>
-
         </div>
-
         `;
 
         return;
@@ -36,87 +31,72 @@ async function analyseraAktie() {
 
 
 
-
-
-    let marknadsData = await hamtaAktieData(valdAktie.ticker);
+    let data = await hamtaAktieData(aktie.ticker);
 
 
 
-    let analysResultat = skapaAnalys(valdAktie);
-
+    let analys = skapaAnalys(aktie);
 
 
 
 
     resultat.innerHTML = `
 
-
     <div class="project-card">
 
 
     <h3>
-    📈 ${valdAktie.namn}
+    📈 ${aktie.namn}
     </h3>
 
 
-
     <h2>
-    ⭐ AI-poäng:
-    ${analysResultat.poang}/100
+    ⭐ AI-poäng: ${analys.poang}/100
     </h2>
 
 
-
     <p>
-    💵 Kurs:
-    ${marknadsData.price} ${marknadsData.currency}
+    💵 Aktiekurs:
+    ${data.price} ${data.currency}
     </p>
-
 
 
     <p>
     📊 Förändring:
-    ${marknadsData.change}
+    ${data.change}
     </p>
-
 
 
     <p>
     🔄 Uppdaterad:
-    ${marknadsData.updated}
+    ${data.updated}
     </p>
-
 
 
     <hr>
 
 
-
     <p>
     📈 Tillväxt:
-    ${analysResultat.tillvaxt}/100
+    ${analys.tillvaxt}/100
     </p>
-
 
 
     <p>
     💎 Kvalitet:
-    ${analysResultat.kvalitet}/100
+    ${analys.kvalitet}/100
     </p>
-
 
 
     <p>
     ⚠️ Risk:
-    ${analysResultat.risk}/100
+    ${analys.risk}/100
     </p>
-
 
 
     <p>
-    🤖 ${analysResultat.text}
+    🤖 ${analys.text}
     </p>
-
 
 
     </div>
@@ -125,6 +105,7 @@ async function analyseraAktie() {
 
 
 }
+
 
 
 
@@ -159,7 +140,9 @@ function jamfor() {
 
 
 
-    let resultat = document.getElementById("jamforelseResultat");
+    let resultat =
+    document.getElementById("jamforelseResultat");
+
 
 
 
@@ -171,13 +154,12 @@ function jamfor() {
         <div class="project-card">
 
         <h3>
-        ❌ Kunde inte hitta båda aktierna
+        ❌ Hittade inte båda aktierna
         </h3>
 
         </div>
 
         `;
-
 
         return;
 
@@ -186,12 +168,34 @@ function jamfor() {
 
 
 
+    let analys1 = skapaAnalys(aktie1);
 
-    let jamforelse = jamforAktier(
-        aktie1,
-        aktie2
-    );
+    let analys2 = skapaAnalys(aktie2);
 
+
+
+
+    let vinnare;
+
+
+
+    if (analys1.poang > analys2.poang) {
+
+        vinnare = aktie1.namn;
+
+    }
+
+    else if (analys2.poang > analys1.poang) {
+
+        vinnare = aktie2.namn;
+
+    }
+
+    else {
+
+        vinnare = "Oavgjort";
+
+    }
 
 
 
@@ -203,30 +207,61 @@ function jamfor() {
     <div class="project-card">
 
 
+    <h2>
+    📊 ${aktie1.namn} vs ${aktie2.namn}
+    </h2>
+
+
+
     <h3>
-    📊 Jämförelse
+    ${aktie1.namn}: ${analys1.poang}/100
     </h3>
 
 
+    <div style="width:100%;background:#ddd">
+
+        <div style="
+        width:${analys1.poang}%;
+        background:#2563eb;
+        height:20px;">
+        </div>
+
+    </div>
+
+
+
+
+    <h3>
+    ${aktie2.namn}: ${analys2.poang}/100
+    </h3>
+
+
+    <div style="width:100%;background:#ddd">
+
+        <div style="
+        width:${analys2.poang}%;
+        background:#16a34a;
+        height:20px;">
+        </div>
+
+    </div>
+
+
+
+
+
+    <h1>
+    🏆 Vinnare: ${vinnare}
+    </h1>
+
+
+
 
     <p>
-    ${jamforelse.aktie1.namn}:
-    ${jamforelse.aktie1.poang}/100
+    🤖 AI-analys:
+    ${vinnare} har högst totalpoäng baserat på
+    tillväxt, kvalitet och risk.
     </p>
-
-
-
-    <p>
-    ${jamforelse.aktie2.namn}:
-    ${jamforelse.aktie2.poang}/100
-    </p>
-
-
-
-    <h2>
-    🏆 Vinnare:
-    ${jamforelse.vinnare}
-    </h2>
 
 
 
