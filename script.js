@@ -1,7 +1,7 @@
 function analyseraAktie() {
 
 
-    let aktie = document.getElementById("aktieInput").value.toLowerCase();
+    let aktie = document.getElementById("aktieInput").value.trim().toLowerCase();
 
     let resultat = document.getElementById("resultat");
 
@@ -53,7 +53,7 @@ function analyseraAktie() {
             risk: 70,
 
             sammanfattning:
-            "Extrem tillväxt och stark position inom AI, men värderingen kräver försiktighet."
+            "Extrem tillväxt inom AI och stark marknadsposition, men värderingen är hög."
 
         },
 
@@ -117,8 +117,8 @@ function analyseraAktie() {
 
 
 
-    resultat.innerHTML = `
 
+    resultat.innerHTML = `
 
 
     <div class="project-card">
@@ -129,32 +129,27 @@ function analyseraAktie() {
         </h3>
 
 
-
         <h2>
             ⭐ ${valdAktie.total}/100
         </h2>
 
 
-
         <p>
-            💎 Kvalitet
-            █████████░ ${valdAktie.kvalitet}%
+            💎 Kvalitet:
+            ${valdAktie.kvalitet}%
         </p>
 
 
-
         <p>
-            📊 Tillväxt
-            █████████░ ${valdAktie.tillvaxt}%
+            📊 Tillväxt:
+            ${valdAktie.tillvaxt}%
         </p>
 
 
-
         <p>
-            ⚠️ Risk
-            ███████░░░ ${valdAktie.risk}%
+            ⚠️ Risk:
+            ${valdAktie.risk}%
         </p>
-
 
 
         <p>
@@ -163,12 +158,10 @@ function analyseraAktie() {
         </p>
 
 
-
     </div>
 
 
     `;
-
 
 
 }
