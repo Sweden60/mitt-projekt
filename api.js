@@ -1,25 +1,25 @@
 console.log("API.JS laddad");
 
 
+
 async function hamtaAktieData(ticker) {
 
 
     try {
 
 
-        const url = 
+        const url =
         `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
 
 
 
         const response = await fetch(url);
 
-
         const data = await response.json();
 
 
 
-        console.log("API svar:", data);
+        console.log("Kursdata:", data);
 
 
 
@@ -28,9 +28,6 @@ async function hamtaAktieData(ticker) {
 
 
         if (!quote || !quote["05. price"]) {
-
-
-            console.log("Ingen kursdata hittades");
 
             return null;
 
@@ -54,11 +51,73 @@ async function hamtaAktieData(ticker) {
 
 
 
-    } catch (error) {
+    } catch(error) {
 
 
-        console.log("API fel:", error);
+        console.log("Kursfel:", error);
 
+        return null;
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+async function hamtaForetagsData(ticker) {
+
+
+    try {
+
+
+        const url =
+        `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${API_KEY}`;
+
+
+
+        const response = await fetch(url);
+
+
+        const data = await response.json();
+
+
+
+        console.log("Företagsdata:", data);
+
+
+
+        return {
+
+
+            namn: data.Name,
+
+            sektor: data.Sector,
+
+            bransch: data.Industry,
+
+            borvarde: data.MarketCapitalization,
+
+            pe: data.PERatio,
+
+            vinstmarginal: data.ProfitMargin,
+
+            omsattning: data.RevenueTTM
+
+
+        };
+
+
+
+    } catch(error) {
+
+
+        console.log("Företagsfel:", error);
 
         return null;
 

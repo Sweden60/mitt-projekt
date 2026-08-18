@@ -23,6 +23,7 @@ async function analyseraAktie() {
 
 
 
+
     let valdAktie = stocks[aktie];
 
 
@@ -57,8 +58,38 @@ async function analyseraAktie() {
     let marknadsData = await hamtaAktieData(valdAktie.ticker);
 
 
+    let foretagsData = await hamtaForetagsData(valdAktie.ticker);
+
+
 
     let analysResultat = skapaAnalys(valdAktie);
+
+
+
+
+
+    if (!marknadsData || !foretagsData) {
+
+
+        resultat.innerHTML = `
+
+        <div class="project-card">
+
+            <h3>
+                ⚠️ Kunde inte hämta all data
+            </h3>
+
+        </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
 
 
 
@@ -70,7 +101,7 @@ async function analyseraAktie() {
 
 
         <h3>
-            📈 ${valdAktie.namn}
+            📈 ${foretagsData.namn}
         </h3>
 
 
@@ -79,6 +110,14 @@ async function analyseraAktie() {
             ⭐ AI-poäng:
             ${analysResultat.poang}/100
         </h2>
+
+
+
+
+        <p>
+            🔎 Ticker:
+            ${valdAktie.ticker}
+        </p>
 
 
 
@@ -102,6 +141,51 @@ async function analyseraAktie() {
         <p>
             🔄 Senast uppdaterad:
             ${marknadsData.updated}
+        </p>
+
+
+
+
+        <hr>
+
+
+
+
+        <p>
+            🏢 Sektor:
+            ${foretagsData.sektor}
+        </p>
+
+
+
+
+        <p>
+            🏭 Bransch:
+            ${foretagsData.bransch}
+        </p>
+
+
+
+
+        <p>
+            💰 Börsvärde:
+            ${foretagsData.borvarde}
+        </p>
+
+
+
+
+        <p>
+            📊 P/E-tal:
+            ${foretagsData.pe}
+        </p>
+
+
+
+
+        <p>
+            💎 Vinstmarginal:
+            ${foretagsData.vinstmarginal}
         </p>
 
 
