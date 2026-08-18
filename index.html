@@ -21,11 +21,8 @@
     <div>
 
         <a href="#hem">Hem</a>
-
         <a href="#analys">Analys</a>
-
         <a href="#verktyg">Verktyg</a>
-
         <a href="#kontakt">Kontakt</a>
 
     </div>
@@ -38,23 +35,23 @@
 
 <section class="hero" id="hem">
 
-
     <h1>
         Analysera aktier smartare 📊
     </h1>
 
 
     <p>
-        En plattform för att analysera bolag, jämföra aktier och bygga bättre investeringsbeslut.
+        En plattform för att analysera bolag med data och smarta verktyg.
     </p>
 
 
-    <button>
+    <button onclick="document.getElementById('analys').scrollIntoView()">
         Börja analysera
     </button>
 
 
 </section>
+
 
 
 
@@ -78,23 +75,20 @@
         </h3>
 
 
-
         <p>
-            Skriv in ett bolag för att få en analys.
+            Skriv bolagets namn.
         </p>
 
 
 
         <input 
-        id="aktieInput" 
-        placeholder="Exempel: Apple">
+        id="aktieInput"
+        placeholder="Exempel: Nvidia">
 
 
 
         <button onclick="analyseraAktie()">
-
             Analysera
-
         </button>
 
 
@@ -117,44 +111,38 @@
 <section class="tools" id="verktyg">
 
 
-    <h2>
-        Verktyg
-    </h2>
+<h2>
+    Verktyg
+</h2>
 
 
 
-    <div class="project-card">
+<div class="project-card">
 
+<h3>
+📊 Aktie jämförelse
+</h3>
 
-        <h3>
-            📊 Aktie jämförelse
-        </h3>
+<p>
+Jämför flera bolag.
+</p>
 
-
-        <p>
-            Jämför två bolag mot varandra.
-        </p>
-
-
-    </div>
+</div>
 
 
 
 
-    <div class="project-card">
+<div class="project-card">
 
+<h3>
+💰 Utdelningskalkylator
+</h3>
 
-        <h3>
-            💰 Utdelningskalkylator
-        </h3>
+<p>
+Beräkna framtida utdelningar.
+</p>
 
-
-        <p>
-            Räkna på framtida utdelningar.
-        </p>
-
-
-    </div>
+</div>
 
 
 
@@ -169,14 +157,14 @@
 <section class="contact" id="kontakt">
 
 
-    <h2>
-        Kontakt
-    </h2>
+<h2>
+    Kontakt
+</h2>
 
 
-    <p>
-        Byggd med HTML, CSS och framtida AI-funktioner.
-    </p>
+<p>
+    AI Aktieanalys - framtidens analysverktyg.
+</p>
 
 
 </section>
@@ -185,13 +173,13 @@
 
 
 
+
+
 <footer>
 
-
-    <p>
-        © 2026 AI Aktieanalys
-    </p>
-
+<p>
+© 2026 AI Aktieanalys
+</p>
 
 </footer>
 
@@ -199,7 +187,12 @@
 
 
 
+<script src="stocks.js"></script>
+
+<script src="api.js"></script>
+
 <script src="script.js"></script>
+
 
 
 </body>

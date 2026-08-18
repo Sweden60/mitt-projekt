@@ -1,7 +1,12 @@
 function analyseraAktie() {
 
 
-    let aktie = document.getElementById("aktieInput").value.trim().toLowerCase();
+    let aktie = document
+        .getElementById("aktieInput")
+        .value
+        .trim()
+        .toLowerCase();
+
 
     let resultat = document.getElementById("resultat");
 
@@ -17,89 +22,8 @@ function analyseraAktie() {
 
 
 
-    let analys = {
 
-
-        apple: {
-
-            namn: "Apple",
-
-            kurs: "$225",
-
-            marknadsvarde: "3.4 biljoner USD",
-
-            pe: "34",
-
-            total: 86,
-
-            tillvaxt: 78,
-
-            lonssamhet: "Mycket hög",
-
-            risk: "Låg",
-
-            sammanfattning:
-            "Starkt kvalitetsbolag med stabil vinst och starkt varumärke."
-
-        },
-
-
-
-        nvidia: {
-
-            namn: "Nvidia",
-
-            kurs: "$180",
-
-            marknadsvarde: "4.4 biljoner USD",
-
-            pe: "55",
-
-            total: 91,
-
-            tillvaxt: 98,
-
-            lonssamhet: "Extremt hög",
-
-            risk: "Medel",
-
-            sammanfattning:
-            "Ledande inom AI och datacenter. Hög tillväxt men hög värdering."
-
-        },
-
-
-
-        tesla: {
-
-            namn: "Tesla",
-
-            kurs: "$350",
-
-            marknadsvarde: "1 biljon USD",
-
-            pe: "180",
-
-            total: 74,
-
-            tillvaxt: 90,
-
-            lonssamhet: "Medel",
-
-            risk: "Hög",
-
-            sammanfattning:
-            "Stor tillväxtpotential men hög värdering och konkurrens."
-
-        }
-
-
-    };
-
-
-
-
-    let valdAktie = analys[aktie];
+    let valdAktie = stocks[aktie];
 
 
 
@@ -107,32 +31,25 @@ function analyseraAktie() {
     if (!valdAktie) {
 
 
-        valdAktie = {
+        resultat.innerHTML = `
 
-            namn: aktie.toUpperCase(),
+        <div class="project-card">
 
-            kurs: "Ej tillgänglig",
+            <h3>
+                ❌ Ingen data hittades
+            </h3>
 
-            marknadsvarde: "Ej tillgängligt",
+            <p>
+                Vi har ännu ingen analys för ${aktie}.
+            </p>
 
-            pe: "Ej tillgängligt",
+        </div>
 
-            total: 50,
+        `;
 
-            tillvaxt: 50,
-
-            lonssamhet: "Okänd",
-
-            risk: "Okänd",
-
-            sammanfattning:
-            "Ingen analys finns ännu för detta bolag."
-
-        };
-
+        return;
 
     }
-
 
 
 
@@ -149,44 +66,33 @@ function analyseraAktie() {
         </h3>
 
 
-        <h2>
-            ⭐ ${valdAktie.total}/100
-        </h2>
-
-
         <p>
-            💵 Aktiekurs: ${valdAktie.kurs}
+            🔎 Ticker:
+            ${valdAktie.ticker}
         </p>
 
 
         <p>
-            🏢 Börsvärde: ${valdAktie.marknadsvarde}
+            💵 Aktiekurs:
+            ${valdAktie.kurs}
         </p>
 
 
         <p>
-            📊 P/E-tal: ${valdAktie.pe}
+            🏢 Börsvärde:
+            ${valdAktie.borvarde}
         </p>
 
 
         <p>
-            📈 Tillväxt: ${valdAktie.tillvaxt}%
-        </p>
-
-
-        <p>
-            💰 Lönsamhet: ${valdAktie.lonssamhet}
-        </p>
-
-
-        <p>
-            ⚠️ Risk: ${valdAktie.risk}
+            📊 P/E-tal:
+            ${valdAktie.pe}
         </p>
 
 
         <p>
             🤖 AI-analys:
-            ${valdAktie.sammanfattning}
+            Data hämtad från aktiedatabasen.
         </p>
 
 
