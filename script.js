@@ -8,6 +8,7 @@ async function analyseraAktie() {
         .toLowerCase();
 
 
+
     let resultat = document.getElementById("resultat");
 
 
@@ -22,11 +23,13 @@ async function analyseraAktie() {
 
 
 
+
     let valdAktie = stocks[aktie];
 
 
 
     if (!valdAktie) {
+
 
         resultat.innerHTML = `
 
@@ -37,12 +40,13 @@ async function analyseraAktie() {
             </h3>
 
             <p>
-                Testa till exempel Nvidia, Apple eller Tesla.
+                Testa Nvidia, Apple eller Tesla.
             </p>
 
         </div>
 
         `;
+
 
         return;
 
@@ -50,7 +54,40 @@ async function analyseraAktie() {
 
 
 
+
+
     let marknadsData = await hamtaAktieData(valdAktie.ticker);
+
+
+
+
+    if (!marknadsData) {
+
+
+        resultat.innerHTML = `
+
+        <div class="project-card">
+
+            <h3>
+                ⚠️ Ingen marknadsdata
+            </h3>
+
+            <p>
+                Kunde inte hämta aktuell aktiedata.
+            </p>
+
+        </div>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
 
 
 
@@ -74,6 +111,7 @@ async function analyseraAktie() {
 
 
 
+
         <p>
             💵 Aktiekurs:
             ${marknadsData.price} ${marknadsData.currency}
@@ -81,10 +119,20 @@ async function analyseraAktie() {
 
 
 
+
         <p>
-            🔄 Uppdaterad:
+            📊 Förändring idag:
+            ${marknadsData.change}
+        </p>
+
+
+
+
+        <p>
+            🔄 Senast uppdaterad:
             ${marknadsData.updated}
         </p>
+
 
 
 
@@ -95,6 +143,7 @@ async function analyseraAktie() {
 
 
 
+
         <p>
             📊 P/E-tal:
             ${valdAktie.pe}
@@ -102,9 +151,10 @@ async function analyseraAktie() {
 
 
 
+
         <p>
             🤖 AI-analys:
-            Data hämtad via analysmotorn.
+            Bolaget analyseras baserat på finansiell data, risk och tillväxt.
         </p>
 
 
@@ -113,6 +163,7 @@ async function analyseraAktie() {
 
 
     `;
+
 
 
 }
