@@ -13,14 +13,13 @@ async function analyseraAktie() {
 
 
 
-    if (aktie === "") {
+    if (!aktie) {
 
-        alert("Skriv in en aktie först!");
+        alert("Skriv ett bolagsnamn");
 
         return;
 
     }
-
 
 
 
@@ -35,18 +34,15 @@ async function analyseraAktie() {
 
         <div class="project-card">
 
-            <h3>
-                ❌ Ingen aktie hittades
-            </h3>
+            <h3>❌ Ingen aktie hittades</h3>
 
             <p>
-                Testa Nvidia, Apple eller Tesla.
+            Testa Nvidia, Apple eller Tesla.
             </p>
 
         </div>
 
         `;
-
 
         return;
 
@@ -54,11 +50,7 @@ async function analyseraAktie() {
 
 
 
-
     let marknadsData = await hamtaAktieData(valdAktie.ticker);
-
-
-    let foretagsData = await hamtaForetagsData(valdAktie.ticker);
 
 
 
@@ -67,29 +59,22 @@ async function analyseraAktie() {
 
 
 
-
-    if (!marknadsData || !foretagsData) {
+    if (!marknadsData) {
 
 
         resultat.innerHTML = `
 
         <div class="project-card">
 
-            <h3>
-                ⚠️ Kunde inte hämta all data
-            </h3>
+        <h3>⚠️ Kunde inte hämta kursdata</h3>
 
         </div>
 
         `;
 
-
         return;
 
     }
-
-
-
 
 
 
@@ -101,48 +86,44 @@ async function analyseraAktie() {
 
 
         <h3>
-            📈 ${foretagsData.namn}
+        📈 ${valdAktie.namn}
         </h3>
 
 
 
         <h2>
-            ⭐ AI-poäng:
-            ${analysResultat.poang}/100
+        ⭐ AI-poäng:
+        ${analysResultat.poang}/100
         </h2>
 
 
 
-
         <p>
-            🔎 Ticker:
-            ${valdAktie.ticker}
+        🔎 Ticker:
+        ${valdAktie.ticker}
         </p>
 
 
 
-
         <p>
-            💵 Aktiekurs:
-            ${marknadsData.price} ${marknadsData.currency}
+        💵 Aktiekurs:
+        ${marknadsData.price}
+        ${marknadsData.currency}
         </p>
 
 
 
-
         <p>
-            📊 Förändring idag:
-            ${marknadsData.change}
+        📊 Förändring idag:
+        ${marknadsData.change}
         </p>
 
 
 
-
         <p>
-            🔄 Senast uppdaterad:
-            ${marknadsData.updated}
+        🔄 Senast uppdaterad:
+        ${marknadsData.updated}
         </p>
-
 
 
 
@@ -150,77 +131,30 @@ async function analyseraAktie() {
 
 
 
-
         <p>
-            🏢 Sektor:
-            ${foretagsData.sektor}
-        </p>
-
-
-
-
-        <p>
-            🏭 Bransch:
-            ${foretagsData.bransch}
-        </p>
-
-
-
-
-        <p>
-            💰 Börsvärde:
-            ${foretagsData.borvarde}
-        </p>
-
-
-
-
-        <p>
-            📊 P/E-tal:
-            ${foretagsData.pe}
-        </p>
-
-
-
-
-        <p>
-            💎 Vinstmarginal:
-            ${foretagsData.vinstmarginal}
-        </p>
-
-
-
-
-        <hr>
-
-
-
-
-        <p>
-            📈 Tillväxt:
-            ${analysResultat.tillvaxt}/100
+        📈 Tillväxt:
+        ${analysResultat.tillvaxt}/100
         </p>
 
 
 
         <p>
-            💎 Kvalitet:
-            ${analysResultat.kvalitet}/100
+        💎 Kvalitet:
+        ${analysResultat.kvalitet}/100
         </p>
 
 
 
         <p>
-            ⚠️ Risk:
-            ${analysResultat.risk}/100
+        ⚠️ Risk:
+        ${analysResultat.risk}/100
         </p>
 
 
 
-
         <p>
-            🤖 AI-bedömning:
-            ${analysResultat.text}
+        🤖 AI-bedömning:
+        ${analysResultat.text}
         </p>
 
 
