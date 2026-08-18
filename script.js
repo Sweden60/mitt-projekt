@@ -1,6 +1,11 @@
 function analyseraAktie() {
 
-    let aktie = document.getElementById("aktieInput").value;
+
+    let aktie = document.getElementById("aktieInput").value.toLowerCase();
+
+
+    let resultat = document.getElementById("resultat");
+
 
 
     if (aktie === "") {
@@ -13,47 +18,125 @@ function analyseraAktie() {
 
 
 
-    let resultat = document.getElementById("resultat");
+    let analys = {
+
+        apple: {
+
+            namn: "Apple",
+
+            poang: 86,
+
+            tillvaxt: "Stark",
+
+            kvalitet: "Mycket hög",
+
+            risk: "Låg"
+
+        },
+
+
+        nvidia: {
+
+            namn: "Nvidia",
+
+            poang: 91,
+
+            tillvaxt: "Extrem",
+
+            kvalitet: "Mycket hög",
+
+            risk: "Medel"
+
+        },
+
+
+        tesla: {
+
+            namn: "Tesla",
+
+            poang: 74,
+
+            tillvaxt: "Hög",
+
+            kvalitet: "Medel",
+
+            risk: "Hög"
+
+        }
+
+    };
+
+
+
+    let valdAktie = analys[aktie];
+
+
+
+    if (!valdAktie) {
+
+
+        valdAktie = {
+
+            namn: aktie.toUpperCase(),
+
+            poang: 70,
+
+            tillvaxt: "Okänd",
+
+            kvalitet: "Ej analyserad",
+
+            risk: "Okänd"
+
+        };
+
+
+    }
+
+
 
 
 
     resultat.innerHTML = `
 
-        <div class="project-card">
 
-            <h3>
-                📈 ${aktie}
-            </h3>
+    <div class="project-card">
 
 
-            <p>
-                ⭐ Aktiepoäng: 85/100
-            </p>
+        <h3>
+            📈 ${valdAktie.namn}
+        </h3>
 
 
-            <p>
-                📊 Tillväxt: Stark
-            </p>
+        <p>
+            ⭐ Aktiepoäng: ${valdAktie.poang}/100
+        </p>
 
 
-            <p>
-                💰 Lönsamhet: Hög
-            </p>
+        <p>
+            📊 Tillväxt: ${valdAktie.tillvaxt}
+        </p>
 
 
-            <p>
-                ⚠️ Risk: Medel
-            </p>
+        <p>
+            💎 Kvalitet: ${valdAktie.kvalitet}
+        </p>
 
 
-            <p>
-                🤖 AI-bedömning:
-                Ett kvalitetsbolag med stark historik.
-            </p>
+        <p>
+            ⚠️ Risk: ${valdAktie.risk}
+        </p>
 
 
-        </div>
+        <p>
+            🤖 AI-bedömning:
+            Analysen bygger på bolagets kvalitet, tillväxt och riskprofil.
+        </p>
+
+
+    </div>
+
 
     `;
+
 
 }
