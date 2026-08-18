@@ -1,46 +1,126 @@
 function skapaAnalys(aktie) {
 
 
-    let poang = 50;
-
-
     let tillvaxt = 50;
-    let risk = 50;
     let kvalitet = 50;
+    let risk = 50;
 
 
 
-    if (aktie.pe < 30) {
+    // Tillväxt
+    if (aktie.tillvaxt === "Mycket hög") {
 
-        kvalitet += 15;
+        tillvaxt += 35;
 
-    } else {
+    } 
+    else if (aktie.tillvaxt === "Hög") {
 
-        kvalitet -= 5;
+        tillvaxt += 25;
+
+    }
+    else {
+
+        tillvaxt += 10;
 
     }
 
 
 
-    if (aktie.tillvaxt === "Hög") {
 
-        tillvaxt += 20;
+    // Kvalitet
+    if (aktie.lonsamhet === "Extremt hög") {
+
+        kvalitet += 35;
+
+    }
+    else if (aktie.lonsamhet === "Mycket hög") {
+
+        kvalitet += 25;
+
+    }
+    else {
+
+        kvalitet += 10;
 
     }
 
 
 
+
+    // Risk
     if (aktie.risk === "Låg") {
 
-        risk += 20;
+        risk += 25;
 
     }
+    else if (aktie.risk === "Medel") {
+
+        risk += 10;
+
+    }
+    else {
+
+        risk -= 10;
+
+    }
+
+
+
+
+
+    // Begränsa värden
+    tillvaxt = Math.min(tillvaxt, 100);
+
+    kvalitet = Math.min(kvalitet, 100);
+
+    risk = Math.max(Math.min(risk, 100), 0);
+
+
 
 
 
     let total = Math.round(
-        (tillvaxt + kvalitet + risk) / 3
+
+        (tillvaxt * 0.4) +
+        (kvalitet * 0.35) +
+        (risk * 0.25)
+
     );
+
+
+
+
+
+    let text;
+
+
+
+    if (total >= 85) {
+
+
+        text =
+        "Starkt bolag med hög kvalitet, bra tillväxt och attraktiv riskprofil.";
+
+
+    }
+    else if (total >= 70) {
+
+
+        text =
+        "Bra bolag med tydliga styrkor men vissa risker finns.";
+
+
+    }
+    else {
+
+
+        text =
+        "Blandad bild med både möjligheter och risker.";
+
+
+    }
+
+
 
 
 
@@ -55,11 +135,7 @@ function skapaAnalys(aktie) {
 
         risk: risk,
 
-
-        text:
-        total >= 80
-        ? "Starkt bolag med bra grunddata."
-        : "Blandad bild med både styrkor och risker."
+        text: text
 
 
     };
