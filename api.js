@@ -2,6 +2,8 @@ console.log("API.JS laddad");
 
 
 
+
+
 async function hamtaAktieData(ticker) {
 
 
@@ -13,30 +15,42 @@ async function hamtaAktieData(ticker) {
 
 
 
-        const response = await fetch(url);
-
-
-        const data = await response.json();
-
-
-
-        console.log("Kursdata:", data);
+        const response =
+        await fetch(url);
 
 
 
-        const quote = data["Global Quote"];
+        const data =
+        await response.json();
 
 
 
-        if (!quote || !quote["05. price"]) {
+        const quote =
+        data["Global Quote"];
 
 
-            console.log("Ingen kursdata hittades");
 
 
-            return null;
+        if (!quote) {
+
+
+            return {
+
+
+                price: "Ej tillgänglig",
+
+                currency: "USD",
+
+                change: "Ej tillgänglig",
+
+                updated: "Ingen data"
+
+
+            };
+
 
         }
+
 
 
 
@@ -44,26 +58,153 @@ async function hamtaAktieData(ticker) {
         return {
 
 
-            price: Number(quote["05. price"]).toFixed(2),
+            price:
+            quote["05. price"],
 
-            currency: "USD",
 
-            change: quote["10. change percent"],
+            currency:
+            "USD",
 
-            updated: quote["07. latest trading day"]
+
+            change:
+            quote["10. change percent"],
+
+
+            updated:
+            quote["07. latest trading day"]
 
 
         };
 
 
 
-    } catch(error) {
+    }
 
 
-        console.log("API fel:", error);
+    catch(error) {
 
 
-        return null;
+        console.log(error);
+
+
+        return {
+
+
+            price: "Fel",
+
+            currency:"",
+
+            change:"",
+
+            updated:""
+
+
+        };
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+async function hamtaHistoriskaPriser(ticker) {
+
+
+    try {
+
+
+        const url =
+
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
+
+
+
+
+        const response =
+
+        await fetch(url);
+
+
+
+        const data =
+
+        await response.json();
+
+
+
+
+
+        const serie =
+
+        data["Time Series (Daily)"];
+
+
+
+
+
+        if (!serie) {
+
+
+            return [];
+
+
+        }
+
+
+
+
+
+
+        let priser = [];
+
+
+
+
+
+        Object.values(serie)
+
+        .reverse()
+
+        .forEach(dag => {
+
+
+            priser.push(
+
+                Number(
+                dag["4. close"]
+                )
+
+            );
+
+
+        });
+
+
+
+
+
+
+        return priser;
+
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.log(error);
+
+        return [];
 
 
     }

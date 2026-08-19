@@ -2,36 +2,54 @@ let valtBolag = null;
 
 
 
+
+
+
 async function analyseraAktie() {
 
 
-    let namn = document
-        .getElementById("aktieInput")
-        .value
-        .trim()
-        .toLowerCase();
+    let namn =
+    document.getElementById("aktieInput")
+    .value
+    .trim()
+    .toLowerCase();
 
 
 
-    let resultat = document.getElementById("resultat");
+
+    let resultat =
+    document.getElementById("resultat");
 
 
 
-    let aktie = stocks[namn];
+    let aktie =
+    stocks[namn];
+
 
 
 
     if (!aktie) {
 
+
         resultat.innerHTML = `
+
         <div class="project-card">
-        <h3>❌ Ingen aktie hittades</h3>
+
+        <h3>
+        ❌ Ingen aktie hittades
+        </h3>
+
         </div>
+
         `;
+
 
         return;
 
+
     }
+
+
 
 
 
@@ -39,20 +57,28 @@ async function analyseraAktie() {
 
 
 
-    let data = await hamtaAktieData(aktie.ticker);
+    let data =
+    await hamtaAktieData(aktie.ticker);
 
 
-    let analys = skapaAnalys(aktie);
+
+    let analys =
+    skapaAnalys(aktie);
+
+
 
 
 
     resultat.innerHTML = `
 
+
     <div class="project-card">
+
 
     <h3>
     📈 ${aktie.namn}
     </h3>
+
 
 
     <h2>
@@ -61,10 +87,12 @@ async function analyseraAktie() {
     </h2>
 
 
+
     <p>
     💵 Kurs:
     ${data.price} ${data.currency}
     </p>
+
 
 
     <p>
@@ -73,13 +101,16 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     🔄 Uppdaterad:
     ${data.updated}
     </p>
 
 
+
     <hr>
+
 
 
     <p>
@@ -88,10 +119,12 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     💎 Kvalitet:
     ${analys.kvalitet}/100
     </p>
+
 
 
     <p>
@@ -100,14 +133,18 @@ async function analyseraAktie() {
     </p>
 
 
+
     <p>
     🤖 ${analys.text}
     </p>
 
 
+
     </div>
 
+
     `;
+
 
 
 }
@@ -118,11 +155,14 @@ async function analyseraAktie() {
 
 
 
-function visaTrend() {
+
+
+async function visaTrend() {
 
 
     let resultat =
     document.getElementById("trendResultat");
+
 
 
 
@@ -144,38 +184,129 @@ function visaTrend() {
 
         return;
 
+
     }
+
+
+
+
+
+
+    let priser =
+
+    await hamtaHistoriskaPriser(
+        valtBolag.ticker
+    );
+
+
+
+
+
+
+
+    if (priser.length === 0) {
+
+
+        resultat.innerHTML = `
+
+        <div class="project-card">
+
+        <h3>
+        ❌ Ingen historisk data hittades
+        </h3>
+
+
+        <p>
+        ${valtBolag.ticker}
+        </p>
+
+        </div>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    let trend =
+    skapaTrendData(priser);
+
+
+
 
 
 
 
     resultat.innerHTML = `
 
+
     <div class="project-card">
+
 
     <h2>
     📈 Trend för ${valtBolag.namn}
     </h2>
 
 
+
     <p>
-    Historisk data kommer kopplas här.
+    Start:
+    ${trend.start}
     </p>
 
 
+
     <p>
-    Ticker:
-    ${valtBolag.ticker}
+    Slut:
+    ${trend.slut}
     </p>
+
+
+
+    <p>
+    Förändring:
+    ${trend.förändring}
+    </p>
+
+
+
+    <p>
+    🔼 Högsta:
+    ${trend.hogsta}
+    </p>
+
+
+
+    <p>
+    🔽 Lägsta:
+    ${trend.lagsta}
+    </p>
+
+
+
+    <h3>
+    ${trend.trend}
+    </h3>
+
 
 
     </div>
+
 
     `;
 
 
 
 }
+
 
 
 
@@ -195,6 +326,7 @@ function jamfor() {
 
 
 
+
     let namn2 =
     document.getElementById("aktie2")
     .value
@@ -204,14 +336,22 @@ function jamfor() {
 
 
 
-    let aktie1 = stocks[namn1];
 
-    let aktie2 = stocks[namn2];
+    let aktie1 =
+    stocks[namn1];
+
+
+    let aktie2 =
+    stocks[namn2];
+
+
 
 
 
     let resultat =
     document.getElementById("jamforelseResultat");
+
+
 
 
 
@@ -224,13 +364,24 @@ function jamfor() {
 
         return;
 
+
     }
 
 
 
-    let analys1 = skapaAnalys(aktie1);
 
-    let analys2 = skapaAnalys(aktie2);
+
+
+    let analys1 =
+    skapaAnalys(aktie1);
+
+
+
+    let analys2 =
+    skapaAnalys(aktie2);
+
+
+
 
 
 
@@ -240,25 +391,33 @@ function jamfor() {
 
     if (analys1.poang > analys2.poang) {
 
+
         vinnare = aktie1.namn;
 
-    }
 
+    }
     else {
+
 
         vinnare = aktie2.namn;
 
+
     }
+
+
 
 
 
     resultat.innerHTML = `
 
+
     <div class="project-card">
+
 
     <h2>
     📊 ${aktie1.namn} vs ${aktie2.namn}
     </h2>
+
 
 
     <p>
@@ -266,9 +425,11 @@ function jamfor() {
     </p>
 
 
+
     <p>
     ${aktie2.namn}: ${analys2.poang}/100
     </p>
+
 
 
     <h2>
@@ -276,10 +437,11 @@ function jamfor() {
     </h2>
 
 
+
     </div>
 
-    `;
 
+    `;
 
 
 }
