@@ -19,17 +19,10 @@ async function analyseraAktie() {
 
     if (!aktie) {
 
-
         resultat.innerHTML = `
-
         <div class="project-card">
-
-        <h3>
-        ❌ Ingen aktie hittades
-        </h3>
-
+        <h3>❌ Ingen aktie hittades</h3>
         </div>
-
         `;
 
         return;
@@ -38,26 +31,19 @@ async function analyseraAktie() {
 
 
 
-
     let data = await hamtaAktieData(aktie.ticker);
-
-
 
     let analys = skapaAnalys(aktie);
 
 
 
-
     resultat.innerHTML = `
 
-
     <div class="project-card">
-
 
     <h3>
     📈 ${aktie.namn}
     </h3>
-
 
 
     <h2>
@@ -66,12 +52,10 @@ async function analyseraAktie() {
     </h2>
 
 
-
     <p>
     💵 Kurs:
     ${data.price} ${data.currency}
     </p>
-
 
 
     <p>
@@ -80,16 +64,13 @@ async function analyseraAktie() {
     </p>
 
 
-
     <p>
     🔄 Uppdaterad:
     ${data.updated}
     </p>
 
 
-
     <hr>
-
 
 
     <p>
@@ -98,12 +79,10 @@ async function analyseraAktie() {
     </p>
 
 
-
     <p>
     💎 Kvalitet:
     ${analys.kvalitet}/100
     </p>
-
 
 
     <p>
@@ -112,18 +91,14 @@ async function analyseraAktie() {
     </p>
 
 
-
     <p>
     🤖 ${analys.text}
     </p>
 
 
-
     </div>
 
-
     `;
-
 
 
 }
@@ -141,16 +116,14 @@ function jamfor() {
 
     let namn1 =
     document.getElementById("aktie1")
-    .value
-    .trim()
+    .value.trim()
     .toLowerCase();
 
 
 
     let namn2 =
     document.getElementById("aktie2")
-    .value
-    .trim()
+    .value.trim()
     .toLowerCase();
 
 
@@ -190,10 +163,10 @@ function jamfor() {
 
 
 
-
     let analys1 = skapaAnalys(aktie1);
 
     let analys2 = skapaAnalys(aktie2);
+
 
 
 
@@ -206,13 +179,11 @@ function jamfor() {
         vinnare = aktie1.namn;
 
     }
-
     else if (analys2.poang > analys1.poang) {
 
         vinnare = aktie2.namn;
 
     }
-
     else {
 
         vinnare = "Oavgjort";
@@ -225,14 +196,12 @@ function jamfor() {
 
     resultat.innerHTML = `
 
-
     <div class="project-card">
 
 
     <h2>
     📊 ${aktie1.namn} vs ${aktie2.namn}
     </h2>
-
 
 
     <p>
@@ -247,22 +216,19 @@ function jamfor() {
     </p>
 
 
-
     <h2>
     🏆 Vinnare:
     ${vinnare}
     </h2>
 
 
-
     </div>
-
 
     `;
 
 
-
 }
+
 
 
 
@@ -287,6 +253,7 @@ function visaTrend() {
 
 
     let trend = skapaTrendData(priser);
+
 
 
 
@@ -320,6 +287,18 @@ function visaTrend() {
     </p>
 
 
+    <p>
+    🔼 Högsta:
+    ${trend.hogsta}
+    </p>
+
+
+    <p>
+    🔽 Lägsta:
+    ${trend.lagsta}
+    </p>
+
+
     <h3>
     ${trend.trend}
     </h3>
@@ -329,7 +308,6 @@ function visaTrend() {
 
 
     `;
-
 
 
 }

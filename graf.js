@@ -7,8 +7,17 @@ function skapaTrendData(priser) {
 
 
 
+    let hogsta = Math.max(...priser);
+
+    let lagsta = Math.min(...priser);
+
+
+
+
     let förändring =
         ((slut - start) / start) * 100;
+
+
 
 
 
@@ -16,21 +25,32 @@ function skapaTrendData(priser) {
 
 
 
-    if (förändring > 20) {
+    if (förändring >= 20) {
+
 
         trend = "📈 Stark uppgång";
 
-    }
 
+    }
     else if (förändring > 0) {
+
 
         trend = "📈 Positiv trend";
 
-    }
 
+    }
+    else if (förändring === 0) {
+
+
+        trend = "➡️ Sidledes";
+
+
+    }
     else {
 
-        trend = "📉 Negativ trend";
+
+        trend = "📉 Nedgång";
+
 
     }
 
@@ -41,24 +61,23 @@ function skapaTrendData(priser) {
     return {
 
 
-        start:
-
-        start,
+        start: start,
 
 
-        slut:
-
-        slut,
+        slut: slut,
 
 
         förändring:
-
         förändring.toFixed(2) + "%",
 
 
-        trend:
+        hogsta: hogsta,
 
-        trend
+
+        lagsta: lagsta,
+
+
+        trend: trend
 
 
     };
