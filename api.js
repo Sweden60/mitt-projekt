@@ -36,7 +36,6 @@ async function hamtaAktieData(ticker) {
 
             return {
 
-
                 price: "Ej tillgänglig",
 
                 currency: "USD",
@@ -45,12 +44,10 @@ async function hamtaAktieData(ticker) {
 
                 updated: "Ingen data"
 
-
             };
 
 
         }
-
 
 
 
@@ -89,15 +86,13 @@ async function hamtaAktieData(ticker) {
 
         return {
 
-
-            price: "Fel",
+            price:"Fel",
 
             currency:"",
 
             change:"",
 
             updated:""
-
 
         };
 
@@ -129,13 +124,11 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
         const response =
-
         await fetch(url);
 
 
 
         const data =
-
         await response.json();
 
 
@@ -143,7 +136,6 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
         const serie =
-
         data["Time Series (Daily)"];
 
 
@@ -152,9 +144,7 @@ async function hamtaHistoriskaPriser(ticker) {
 
         if (!serie) {
 
-
             return [];
-
 
         }
 
@@ -169,24 +159,30 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
 
-        Object.values(serie)
+
+        Object.entries(serie)
 
         .reverse()
 
-        .forEach(dag => {
+        .forEach(([datum, dag]) => {
 
 
-            priser.push(
 
+            priser.push({
+
+                datum: datum,
+
+
+                pris:
                 Number(
                 dag["4. close"]
                 )
 
-            );
+
+            });
 
 
         });
-
 
 
 

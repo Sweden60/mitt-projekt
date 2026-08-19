@@ -2,22 +2,42 @@ let aktieGraf = null;
 
 
 
-function skapaTrendData(priser) {
 
 
-    let start = priser[0];
-
-    let slut = priser[priser.length - 1];
+function skapaTrendData(data) {
 
 
-    let hogsta = Math.max(...priser);
+    let priser =
+    data.map(
+        punkt => punkt.pris
+    );
 
-    let lagsta = Math.min(...priser);
+
+
+    let start =
+    priser[0];
+
+
+    let slut =
+    priser[priser.length - 1];
+
+
+
+    let hogsta =
+    Math.max(...priser);
+
+
+
+    let lagsta =
+    Math.min(...priser);
+
+
 
 
 
     let förändring =
     ((slut - start) / start) * 100;
+
 
 
 
@@ -52,20 +72,26 @@ function skapaTrendData(priser) {
 
 
 
+
+
     return {
 
-        start: start,
 
-        slut: slut,
+        start:start,
+
+        slut:slut,
 
         förändring:
         förändring.toFixed(2) + "%",
 
-        hogsta: hogsta,
 
-        lagsta: lagsta,
+        hogsta:hogsta,
 
-        trend: trend
+        lagsta:lagsta,
+
+
+        trend:trend
+
 
     };
 
@@ -79,7 +105,7 @@ function skapaTrendData(priser) {
 
 
 
-function skapaGraf(priser, namn) {
+function skapaGraf(data, namn) {
 
 
     let canvas =
@@ -96,7 +122,6 @@ function skapaGraf(priser, namn) {
 
 
 
-
     if (aktieGraf) {
 
         aktieGraf.destroy();
@@ -108,11 +133,17 @@ function skapaGraf(priser, namn) {
 
 
 
-    let etiketter = priser.map(
-        (pris, index) =>
-        "Dag " + (index + 1)
+    let datum =
+    data.map(
+        punkt => punkt.datum
     );
 
+
+
+    let priser =
+    data.map(
+        punkt => punkt.pris
+    );
 
 
 
@@ -123,50 +154,96 @@ function skapaGraf(priser, namn) {
         canvas,
         {
 
-            type: "line",
+
+        type:"line",
 
 
-            data: {
 
-                labels: etiketter,
-
-
-                datasets: [{
-
-                    label: namn,
-
-                    data: priser,
+        data:{
 
 
-                    tension: 0.3
+            labels:datum,
 
-                }]
+
+
+            datasets:[{
+
+
+                label:
+                namn,
+
+
+                data:priser,
+
+
+                tension:0.3
+
+
+            }]
+
+
+        },
+
+
+
+
+        options:{
+
+
+            responsive:true,
+
+
+
+            plugins:{
+
+
+                title:{
+
+
+                    display:true,
+
+
+                    text:
+                    "Historisk kursutveckling"
+
+
+                }
+
 
             },
 
 
-            options: {
 
-                responsive: true,
+            scales:{
 
 
-                plugins: {
+                y:{
 
-                    title: {
 
-                        display: true,
+                    title:{
 
-                        text:
-                        "Historisk kursutveckling"
+
+                        display:true,
+
+
+                        text:"USD"
+
 
                     }
 
+
                 }
+
 
             }
 
 
         }
+
+
+
+        }
+
 
     );
 
