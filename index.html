@@ -17,34 +17,7 @@
 
 <h2>📈 AI Aktieanalys</h2>
 
-<div>
-
-<a href="#analys">Analys</a>
-<a href="#jamforelse">Jämförelse</a>
-<a href="#trend">Trend</a>
-<a href="#kontakt">Kontakt</a>
-
-</div>
-
 </nav>
-
-
-
-
-
-<section class="hero">
-
-<h1>
-Analysera aktier smartare 📊
-</h1>
-
-<p>
-AI-baserad aktieanalys med riktig marknadsdata.
-</p>
-
-</section>
-
-
 
 
 
@@ -57,15 +30,11 @@ Aktieanalys
 </h2>
 
 
-<input
-id="aktieInput"
-placeholder="Exempel: Nvidia">
+<input id="aktieInput" placeholder="Exempel: Nvidia">
 
 
 <button onclick="analyseraAktie()">
-
 Analysera
-
 </button>
 
 
@@ -87,20 +56,14 @@ Jämför aktier
 </h2>
 
 
-<input
-id="aktie1"
-placeholder="Aktie 1">
+<input id="aktie1" placeholder="Aktie 1">
 
 
-<input
-id="aktie2"
-placeholder="Aktie 2">
+<input id="aktie2" placeholder="Aktie 2">
 
 
 <button onclick="jamfor()">
-
 Jämför
-
 </button>
 
 
@@ -117,25 +80,24 @@ Jämför
 
 <section id="trend">
 
+
 <h2>
 📈 Historisk trend
 </h2>
 
 
+
 <button onclick="visaTrend()">
-
 Visa trend
-
 </button>
+
 
 
 <div id="trendResultat">
 
-<p>
-Analysera ett bolag först.
-</p>
-
 </div>
+
+
 
 
 
@@ -144,27 +106,35 @@ Analysera ett bolag först.
 </h2>
 
 
+
+
+<div>
+
+
+<button onclick="bytPeriod(30)">
+1 månad
+</button>
+
+
+<button onclick="bytPeriod(120)">
+6 månader
+</button>
+
+
+<button onclick="bytPeriod(250)">
+1 år
+</button>
+
+
+</div>
+
+
+
+
+
 <canvas id="kursGraf"></canvas>
 
 
-
-</section>
-
-
-
-
-
-
-
-<section id="kontakt">
-
-<h2>
-Kontakt
-</h2>
-
-<p>
-AI Aktieanalys
-</p>
 
 
 </section>
@@ -189,12 +159,7 @@ AI Aktieanalys
 
 
 
-<!-- Grafbibliotek -->
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
-
 
 
 <script src="stocks.js"></script>

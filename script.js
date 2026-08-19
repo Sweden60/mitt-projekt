@@ -1,5 +1,6 @@
 let valtBolag = null;
 
+let historiskaData = [];
 
 
 
@@ -16,27 +17,24 @@ async function analyseraAktie() {
 
 
 
-    let resultat =
-    document.getElementById("resultat");
-
-
-
     let aktie =
     stocks[namn];
 
 
 
-    if (!aktie) {
+    let resultat =
+    document.getElementById("resultat");
 
+
+
+    if (!aktie) {
 
         resultat.innerHTML =
         "❌ Ingen aktie hittades";
 
-
         return;
 
     }
-
 
 
 
@@ -119,17 +117,11 @@ async function analyseraAktie() {
 async function visaTrend() {
 
 
-    let resultat =
-    document.getElementById("trendResultat");
-
-
-
     if (!valtBolag) {
 
-
-        resultat.innerHTML =
+        document.getElementById("trendResultat")
+        .innerHTML =
         "❌ Analysera ett bolag först";
-
 
         return;
 
@@ -138,20 +130,51 @@ async function visaTrend() {
 
 
 
-    let priser =
+    historiskaData =
     await hamtaHistoriskaPriser(
         valtBolag.ticker
     );
 
 
 
+    visaValdTrend(250);
 
-    if (priser.length === 0) {
+}
+
+
+
+
+
+
+
+
+function bytPeriod(antal) {
+
+
+    visaValdTrend(antal);
+
+}
+
+
+
+
+
+
+
+
+function visaValdTrend(antal) {
+
+
+    let resultat =
+    document.getElementById("trendResultat");
+
+
+
+    if (historiskaData.length === 0) {
 
 
         resultat.innerHTML =
-        "❌ Ingen historisk data hittades";
-
+        "❌ Ingen historisk data";
 
         return;
 
@@ -160,13 +183,25 @@ async function visaTrend() {
 
 
 
+
+    let data =
+    historiskaData.slice(
+        -antal
+    );
+
+
+
+
+
     let trend =
-    skapaTrendData(priser);
+    skapaTrendData(data);
+
 
 
 
 
     resultat.innerHTML = `
+
 
     <div class="project-card">
 
@@ -213,12 +248,14 @@ async function visaTrend() {
 
     </div>
 
+
     `;
 
 
 
+
     skapaGraf(
-        priser,
+        data,
         valtBolag.namn
     );
 
@@ -238,22 +275,22 @@ function jamfor() {
 
     let namn1 =
     document.getElementById("aktie1")
-    .value
-    .trim()
+    .value.trim()
     .toLowerCase();
 
 
 
     let namn2 =
     document.getElementById("aktie2")
-    .value
-    .trim()
+    .value.trim()
     .toLowerCase();
+
 
 
 
     let aktie1 =
     stocks[namn1];
+
 
 
     let aktie2 =
@@ -272,7 +309,6 @@ function jamfor() {
         resultat.innerHTML =
         "❌ Kunde inte hitta båda aktierna";
 
-
         return;
 
     }
@@ -280,9 +316,9 @@ function jamfor() {
 
 
 
-
     let analys1 =
     skapaAnalys(aktie1);
+
 
 
     let analys2 =
@@ -300,7 +336,6 @@ function jamfor() {
 
 
     resultat.innerHTML = `
-
 
     <div class="project-card">
 
@@ -325,7 +360,6 @@ function jamfor() {
 
 
     </div>
-
 
     `;
 
