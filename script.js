@@ -1,3 +1,7 @@
+let valtBolag = null;
+
+
+
 async function analyseraAktie() {
 
 
@@ -31,7 +35,12 @@ async function analyseraAktie() {
 
 
 
+    valtBolag = aktie;
+
+
+
     let data = await hamtaAktieData(aktie.ticker);
+
 
     let analys = skapaAnalys(aktie);
 
@@ -109,6 +118,70 @@ async function analyseraAktie() {
 
 
 
+function visaTrend() {
+
+
+    let resultat =
+    document.getElementById("trendResultat");
+
+
+
+    if (!valtBolag) {
+
+
+        resultat.innerHTML = `
+
+        <div class="project-card">
+
+        <h3>
+        ❌ Analysera ett bolag först
+        </h3>
+
+        </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+
+    resultat.innerHTML = `
+
+    <div class="project-card">
+
+    <h2>
+    📈 Trend för ${valtBolag.namn}
+    </h2>
+
+
+    <p>
+    Historisk data kommer kopplas här.
+    </p>
+
+
+    <p>
+    Ticker:
+    ${valtBolag.ticker}
+    </p>
+
+
+    </div>
+
+    `;
+
+
+
+}
+
+
+
+
+
+
 
 
 function jamfor() {
@@ -116,14 +189,16 @@ function jamfor() {
 
     let namn1 =
     document.getElementById("aktie1")
-    .value.trim()
+    .value
+    .trim()
     .toLowerCase();
 
 
 
     let namn2 =
     document.getElementById("aktie2")
-    .value.trim()
+    .value
+    .trim()
     .toLowerCase();
 
 
@@ -140,21 +215,12 @@ function jamfor() {
 
 
 
-
     if (!aktie1 || !aktie2) {
 
 
-        resultat.innerHTML = `
+        resultat.innerHTML =
+        "❌ Kunde inte hitta båda aktierna";
 
-        <div class="project-card">
-
-        <h3>
-        ❌ Kunde inte hitta aktierna
-        </h3>
-
-        </div>
-
-        `;
 
         return;
 
@@ -162,11 +228,9 @@ function jamfor() {
 
 
 
-
     let analys1 = skapaAnalys(aktie1);
 
     let analys2 = skapaAnalys(aktie2);
-
 
 
 
@@ -179,18 +243,12 @@ function jamfor() {
         vinnare = aktie1.namn;
 
     }
-    else if (analys2.poang > analys1.poang) {
+
+    else {
 
         vinnare = aktie2.namn;
 
     }
-    else {
-
-        vinnare = "Oavgjort";
-
-    }
-
-
 
 
 
@@ -198,27 +256,23 @@ function jamfor() {
 
     <div class="project-card">
 
-
     <h2>
     📊 ${aktie1.namn} vs ${aktie2.namn}
     </h2>
 
 
     <p>
-    ${aktie1.namn}:
-    ${analys1.poang}/100
+    ${aktie1.namn}: ${analys1.poang}/100
     </p>
 
 
     <p>
-    ${aktie2.namn}:
-    ${analys2.poang}/100
+    ${aktie2.namn}: ${analys2.poang}/100
     </p>
 
 
     <h2>
-    🏆 Vinnare:
-    ${vinnare}
+    🏆 Vinnare: ${vinnare}
     </h2>
 
 
@@ -226,88 +280,6 @@ function jamfor() {
 
     `;
 
-
-}
-
-
-
-
-
-
-
-
-
-function visaTrend() {
-
-
-    let priser = [
-
-        100,
-        110,
-        125,
-        140,
-        160
-
-    ];
-
-
-
-    let trend = skapaTrendData(priser);
-
-
-
-
-    document.getElementById("trendResultat")
-    .innerHTML = `
-
-
-    <div class="project-card">
-
-
-    <h2>
-    📈 Trend
-    </h2>
-
-
-    <p>
-    Start:
-    ${trend.start}
-    </p>
-
-
-    <p>
-    Slut:
-    ${trend.slut}
-    </p>
-
-
-    <p>
-    Förändring:
-    ${trend.förändring}
-    </p>
-
-
-    <p>
-    🔼 Högsta:
-    ${trend.hogsta}
-    </p>
-
-
-    <p>
-    🔽 Lägsta:
-    ${trend.lagsta}
-    </p>
-
-
-    <h3>
-    ${trend.trend}
-    </h3>
-
-
-    </div>
-
-
-    `;
 
 
 }
