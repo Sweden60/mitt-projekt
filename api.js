@@ -14,14 +14,15 @@ async function hamtaAktieData(ticker) {
         `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${API_KEY}`;
 
 
-
         const response =
         await fetch(url);
 
 
-
         const data =
         await response.json();
+
+
+        console.log("Aktiekurs svar:", data);
 
 
 
@@ -36,18 +37,18 @@ async function hamtaAktieData(ticker) {
 
             return {
 
-                price: "Ej tillgänglig",
+                price: "Ingen data",
 
                 currency: "USD",
 
-                change: "Ej tillgänglig",
+                change: "Ingen data",
 
                 updated: "Ingen data"
 
             };
 
-
         }
+
 
 
 
@@ -117,7 +118,6 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
         const url =
-
         `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=compact&apikey=${API_KEY}`;
 
 
@@ -133,6 +133,10 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
 
+        console.log("Historisk data svar:", data);
+
+
+
 
 
         const serie =
@@ -143,6 +147,10 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
         if (!serie) {
+
+
+            console.log("Ingen tidsserie hittades");
+
 
             return [];
 
@@ -159,13 +167,11 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
 
-
         Object.entries(serie)
 
         .reverse()
 
         .forEach(([datum, dag]) => {
-
 
 
             priser.push({
@@ -175,7 +181,7 @@ async function hamtaHistoriskaPriser(ticker) {
 
                 pris:
                 Number(
-                dag["4. close"]
+                    dag["4. close"]
                 )
 
 
@@ -185,6 +191,10 @@ async function hamtaHistoriskaPriser(ticker) {
         });
 
 
+
+
+
+        console.log("Antal historiska dagar:", priser.length);
 
 
 
@@ -199,6 +209,7 @@ async function hamtaHistoriskaPriser(ticker) {
 
 
         console.log(error);
+
 
         return [];
 
