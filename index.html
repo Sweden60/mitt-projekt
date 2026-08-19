@@ -3,9 +3,9 @@
 
 <head>
 
-    <title>AI Aktieanalys</title>
+<title>AI Aktieanalys</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -32,19 +32,15 @@
 
 
 
-
-
 <section class="hero">
 
 <h1>
 Analysera aktier smartare 📊
 </h1>
 
-
 <p>
-AI-baserad aktieanalys med poängsystem.
+AI-baserad aktieanalys med riktig marknadsdata.
 </p>
-
 
 </section>
 
@@ -56,17 +52,14 @@ AI-baserad aktieanalys med poängsystem.
 
 <section id="analys">
 
-
 <h2>
 Aktieanalys
 </h2>
 
 
-
 <input
 id="aktieInput"
 placeholder="Exempel: Nvidia">
-
 
 
 <button onclick="analyseraAktie()">
@@ -76,13 +69,10 @@ Analysera
 </button>
 
 
-
 <div id="resultat"></div>
 
 
-
 </section>
-
 
 
 
@@ -92,11 +82,9 @@ Analysera
 
 <section id="jamforelse">
 
-
 <h2>
 Jämför aktier
 </h2>
-
 
 
 <input
@@ -104,11 +92,9 @@ id="aktie1"
 placeholder="Aktie 1">
 
 
-
 <input
 id="aktie2"
 placeholder="Aktie 2">
-
 
 
 <button onclick="jamfor()">
@@ -118,13 +104,10 @@ Jämför
 </button>
 
 
-
 <div id="jamforelseResultat"></div>
 
 
-
 </section>
-
 
 
 
@@ -134,11 +117,9 @@ Jämför
 
 <section id="trend">
 
-
 <h2>
 📈 Historisk trend
 </h2>
-
 
 
 <button onclick="visaTrend()">
@@ -148,21 +129,26 @@ Visa trend
 </button>
 
 
-
 <div id="trendResultat">
 
-
 <p>
-Tryck på knappen för trendanalys.
+Analysera ett bolag först.
 </p>
-
 
 </div>
 
 
 
-</section>
+<h2>
+📊 Kursgraf
+</h2>
 
+
+<canvas id="kursGraf"></canvas>
+
+
+
+</section>
 
 
 
@@ -172,19 +158,16 @@ Tryck på knappen för trendanalys.
 
 <section id="kontakt">
 
-
 <h2>
 Kontakt
 </h2>
 
-
 <p>
-AI Aktieanalys - framtidens analysplattform.
+AI Aktieanalys
 </p>
 
 
 </section>
-
 
 
 
@@ -202,6 +185,13 @@ AI Aktieanalys - framtidens analysplattform.
 
 
 
+
+
+
+
+<!-- Grafbibliotek -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 

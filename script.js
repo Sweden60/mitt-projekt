@@ -16,7 +16,6 @@ async function analyseraAktie() {
 
 
 
-
     let resultat =
     document.getElementById("resultat");
 
@@ -27,28 +26,16 @@ async function analyseraAktie() {
 
 
 
-
     if (!aktie) {
 
 
-        resultat.innerHTML = `
-
-        <div class="project-card">
-
-        <h3>
-        ❌ Ingen aktie hittades
-        </h3>
-
-        </div>
-
-        `;
+        resultat.innerHTML =
+        "❌ Ingen aktie hittades";
 
 
         return;
 
-
     }
-
 
 
 
@@ -58,7 +45,9 @@ async function analyseraAktie() {
 
 
     let data =
-    await hamtaAktieData(aktie.ticker);
+    await hamtaAktieData(
+        aktie.ticker
+    );
 
 
 
@@ -68,17 +57,13 @@ async function analyseraAktie() {
 
 
 
-
     resultat.innerHTML = `
-
 
     <div class="project-card">
 
-
-    <h3>
+    <h2>
     📈 ${aktie.namn}
-    </h3>
-
+    </h2>
 
 
     <h2>
@@ -87,12 +72,10 @@ async function analyseraAktie() {
     </h2>
 
 
-
     <p>
     💵 Kurs:
     ${data.price} ${data.currency}
     </p>
-
 
 
     <p>
@@ -101,30 +84,10 @@ async function analyseraAktie() {
     </p>
 
 
-
-    <p>
-    🔄 Uppdaterad:
-    ${data.updated}
-    </p>
-
-
-
-    <hr>
-
-
-
-    <p>
-    📈 Tillväxt:
-    ${analys.tillvaxt}/100
-    </p>
-
-
-
     <p>
     💎 Kvalitet:
     ${analys.kvalitet}/100
     </p>
-
 
 
     <p>
@@ -133,18 +96,14 @@ async function analyseraAktie() {
     </p>
 
 
-
     <p>
     🤖 ${analys.text}
     </p>
 
 
-
     </div>
 
-
     `;
-
 
 
 }
@@ -165,35 +124,21 @@ async function visaTrend() {
 
 
 
-
     if (!valtBolag) {
 
 
-        resultat.innerHTML = `
-
-        <div class="project-card">
-
-        <h3>
-        ❌ Analysera ett bolag först
-        </h3>
-
-        </div>
-
-        `;
+        resultat.innerHTML =
+        "❌ Analysera ett bolag först";
 
 
         return;
-
 
     }
 
 
 
 
-
-
     let priser =
-
     await hamtaHistoriskaPriser(
         valtBolag.ticker
     );
@@ -201,37 +146,16 @@ async function visaTrend() {
 
 
 
-
-
-
     if (priser.length === 0) {
 
 
-        resultat.innerHTML = `
-
-        <div class="project-card">
-
-        <h3>
-        ❌ Ingen historisk data hittades
-        </h3>
-
-
-        <p>
-        ${valtBolag.ticker}
-        </p>
-
-        </div>
-
-        `;
+        resultat.innerHTML =
+        "❌ Ingen historisk data hittades";
 
 
         return;
 
-
     }
-
-
-
 
 
 
@@ -242,11 +166,7 @@ async function visaTrend() {
 
 
 
-
-
-
     resultat.innerHTML = `
-
 
     <div class="project-card">
 
@@ -256,12 +176,10 @@ async function visaTrend() {
     </h2>
 
 
-
     <p>
     Start:
     ${trend.start}
     </p>
-
 
 
     <p>
@@ -270,12 +188,10 @@ async function visaTrend() {
     </p>
 
 
-
     <p>
     Förändring:
     ${trend.förändring}
     </p>
-
 
 
     <p>
@@ -284,12 +200,10 @@ async function visaTrend() {
     </p>
 
 
-
     <p>
     🔽 Lägsta:
     ${trend.lagsta}
     </p>
-
 
 
     <h3>
@@ -297,12 +211,16 @@ async function visaTrend() {
     </h3>
 
 
-
     </div>
-
 
     `;
 
+
+
+    skapaGraf(
+        priser,
+        valtBolag.namn
+    );
 
 
 }
@@ -326,14 +244,11 @@ function jamfor() {
 
 
 
-
     let namn2 =
     document.getElementById("aktie2")
     .value
     .trim()
     .toLowerCase();
-
-
 
 
 
@@ -346,12 +261,8 @@ function jamfor() {
 
 
 
-
-
     let resultat =
     document.getElementById("jamforelseResultat");
-
-
 
 
 
@@ -364,9 +275,7 @@ function jamfor() {
 
         return;
 
-
     }
-
 
 
 
@@ -376,34 +285,16 @@ function jamfor() {
     skapaAnalys(aktie1);
 
 
-
     let analys2 =
     skapaAnalys(aktie2);
 
 
 
 
-
-
-    let vinnare;
-
-
-
-    if (analys1.poang > analys2.poang) {
-
-
-        vinnare = aktie1.namn;
-
-
-    }
-    else {
-
-
-        vinnare = aktie2.namn;
-
-
-    }
-
+    let vinnare =
+    analys1.poang > analys2.poang
+    ? aktie1.namn
+    : aktie2.namn;
 
 
 
@@ -413,11 +304,9 @@ function jamfor() {
 
     <div class="project-card">
 
-
     <h2>
     📊 ${aktie1.namn} vs ${aktie2.namn}
     </h2>
-
 
 
     <p>
@@ -425,17 +314,14 @@ function jamfor() {
     </p>
 
 
-
     <p>
     ${aktie2.namn}: ${analys2.poang}/100
     </p>
 
 
-
     <h2>
     🏆 Vinnare: ${vinnare}
     </h2>
-
 
 
     </div>
